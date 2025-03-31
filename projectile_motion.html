@@ -1,0 +1,71 @@
+<!--
+Ethan Wight
+March 30, 2025
+CMSC 410
+Project 2
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Projectile Motion Simulator</title>
+    <script id="vertex-shader" type="x-shader/x-vertex">
+    attribute vec4 vPosition;
+    attribute vec4 vColor;
+    varying vec4 fColor;
+
+    void main()
+    {
+        fColor = vColor;
+        gl_Position = vPosition;
+    }
+    </script>
+
+    <script id="fragment-shader" type="x-shader/x-fragment">
+    precision mediump float;
+    varying vec4 fColor;
+    void main()
+    {
+        gl_FragColor = fColor;
+    }
+    </script>
+
+    <script type="text/javascript" src="webgl-utils.js"></script>
+    <script type="text/javascript" src="initShaders.js"></script>
+    <script type="text/javascript" src="MV.js"></script>
+    <script type="text/javascript" src="projectile_motion.js"></script>
+</head>
+
+<body>
+    <div>
+        <div>
+            <label>Max height</label>
+            <input type="text" id="max-height" readonly>
+            <label>Max H-Dist.</label>
+            <input type="text" id="max-distance" readonly>
+            <label>Proj Time</label>
+            <input type="text" id="flight-time" readonly>
+        </div>
+
+        <canvas id="gl-canvas" width="800" height="600">
+            Oops ... your browser doesn't support the HTML5 canvas element
+        </canvas>
+        
+        <div>
+            <label>Proj. Angle</label>
+            <span>0</span>
+            <input type="range" id="angle-slider" min="0" max="90" value="45" step="1">
+            <span>90 deg</span>
+        </div>
+        
+        <div>
+            <label>Initial Speed</label>
+            <span>0</span>
+            <input type="range" id="speed-slider" min="0" max="50" value="50" step="1">
+            <span>50 m/s</span>
+        </div>
+        
+        <button id="start-btn">Start projectile</button>
+    </div>
+</body>
+</html>
